@@ -1,8 +1,10 @@
 package com.cbs.Controller;
 
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
 
 import com.cbs.Document.Register;
 import com.cbs.Service.RegisterService;
@@ -18,6 +25,7 @@ import com.cbs.Service.RegisterService;
 @RestController
 @RequestMapping("/api")
 public class RegisterController {
+	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 	  @Autowired
 	    private RegisterService service;
 
@@ -30,11 +38,26 @@ public class RegisterController {
   }
 
   @GetMapping("/getaccount")
- 
-  public String getAllAccount(@RequestParam("id") String id) {
-	  return service.getAllAccountsByID(id);
+  public ResponseEntity<Register> getAllAccount(@RequestParam("id") String id) {
+      try {
+          Register account = service.getAllAccountsByID(id);
+
+          if (account != null) {
+              // Create HttpHeaders and set Content-Type to application/json
+              HttpHeaders headers = new HttpHeaders();
+              headers.setContentType(MediaType.APPLICATION_JSON);
+
+              // Return ResponseEntity with headers and OK status
+              return new ResponseEntity<>(account, headers, HttpStatus.OK);
+          } else {
+              return ResponseEntity.notFound().build();
+          }
+      } catch (Exception e) {
+          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+      }
   }
-  
+
+
   @GetMapping("/getbalance")
   
   public Double getBalance(@RequestParam("id") String id) {

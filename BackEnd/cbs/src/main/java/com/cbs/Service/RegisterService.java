@@ -27,12 +27,9 @@ public class RegisterService {
 		 return jsonArray;
 	}
 	
-	public String getAllAccountsByID(String id) {
-	 
-		 Optional<Register> s = repository.findById(id);
-		 Gson gson = new Gson();
-		    String jsonArray = gson.toJson(s.get());
-		 return jsonArray;
+	public Register getAllAccountsByID(String id) {
+	    Optional<Register> optionalRegister = repository.findById(id);
+	    return optionalRegister.orElse(null); // Return null if not found
 	}
 	
 	public String createAccount(Register role) {
