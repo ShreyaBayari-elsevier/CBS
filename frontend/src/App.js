@@ -1,6 +1,6 @@
 
 import './App.css';
-import AccountDetails from './components/AccountDetails';
+import AccountDetails from './components/accountDetails';
 
 function App() {
   return (
