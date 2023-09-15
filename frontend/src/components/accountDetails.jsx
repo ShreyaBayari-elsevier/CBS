@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './account-details.css';
 
 function AccountDetails() {
   const [accountData, setAccountData] = useState({});
-  const accountId = "ACC123"; // Static ID
+  const accountId = "ACC001"; // Static ID
 
   useEffect(() => {
     // Fetch account details from API on page load
@@ -27,16 +29,13 @@ function AccountDetails() {
   };
 
   return (
-    <div className="container bootstrap snippets bootdey">
+    <div className="container account-details">
       <div className="panel-body inf-content">
-        <button className="btn btn-primary edit-button">Edit Details</button>
-        <div className="row">
-          <div className="col-md-6">
-            <strong>Account Information</strong>
-            <div className="table-responsive">
-              <table className="table table-user-information">
-                <tbody>
-                  <tr>
+        <div className="table-container">
+          <strong>Account Information</strong>
+          <table className="table table-user-information">
+            <tbody>
+            <tr>
                     <td><strong>Account ID</strong></td>
                     <td className="text-primary">{accountData.acc_id}</td>
                   </tr>
@@ -50,11 +49,11 @@ function AccountDetails() {
                   </tr>
                   <tr>
                     <td><strong>Second Name</strong></td>
-                    <td className="text-primary">{accountData.secondName}</td>
+                    <td className="text-primary">{accountData.lastname}</td>
                   </tr>
                   <tr>
                     <td><strong>Phone Number</strong></td>
-                    <td className="text-primary">{accountData.phoneNumber}</td>
+                    <td className="text-primary">{accountData.phonum}</td>
                   </tr>
                   <tr>
                     <td><strong>Address</strong></td>
@@ -70,20 +69,19 @@ function AccountDetails() {
                   </tr>
                   <tr>
                     <td><strong>PAN Card Number</strong></td>
-                    <td className="text-primary">{accountData.panCardNumber}</td>
+                    <td className="text-primary">{accountData.pannum}</td>
                   </tr>
                   <tr>
                     <td><strong>Aadhar Number</strong></td>
-                    <td className="text-primary">{accountData.aadharNumber}</td>
+                    <td className="text-primary">{accountData.aadhar}</td>
                   </tr>
                   <tr>
                     <td><strong>Balance</strong></td>
                     <td className="text-primary">{accountData.balance}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+            </tbody>
+          </table>
+          <button className="btn btn-primary edit-button">Edit Details</button>
         </div>
       </div>
     </div>
@@ -91,3 +89,4 @@ function AccountDetails() {
 }
 
 export default AccountDetails;
+

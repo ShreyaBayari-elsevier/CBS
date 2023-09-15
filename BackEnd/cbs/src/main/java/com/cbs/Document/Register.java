@@ -19,6 +19,10 @@ public class Register {
         private long aadhar;
         private Double balance;
         
+        // Default constructor
+        public Register() {
+        }
+        
 		public Register(String acc_id, String acc_type, String firstname, String lastname, long phonum, String address,
 				String nominee, String nationality, String pannum, long aadhar, Double balance) {
 			super();
