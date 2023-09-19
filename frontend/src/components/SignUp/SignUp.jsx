@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
-// import DarkMode from './DarkMode';
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
