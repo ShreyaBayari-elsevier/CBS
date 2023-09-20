@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import { Link, json } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -29,6 +30,8 @@ function Login() {
         }
       }).then((response)=>{
         console.log("Data : "+response.data);
+        localStorage.setItem('user',JSON.stringify(response.data));
+        // window.location.pathname="/Home";
       });
 
     
@@ -66,11 +69,15 @@ function Login() {
             required
           />
         </div>
-        <button className="btn btn-success " type="submit"> Login</button>
-        <Link to="/signup" className='createAccount-link'>
-          <button className="btn btn-success " type="submit"> Create Account</button>
+        <Link to='/home'>
+          <button className="btn btn-success " type="submit"> Login</button>
         </Link>
 
+        <Link to='/signup'>
+          <button className="btn btn-primary">
+            Signup
+            </button>
+        </Link>
       </form>
     </div>
   );

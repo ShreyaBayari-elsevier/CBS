@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
-// import DarkMode from './DarkMode';
+import { Link, Outlet } from "react-router-dom";
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
@@ -435,37 +435,17 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
+          <Link to='/login'>
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
+          </Link>
         </div>
       </form>
+      <Outlet/>
     </div>
   );
 
-  //   await axios.post(apiURL, {}, {
-  //     params: {
-  //         acc_id: formData.acc_id,
-  //         acc_type: formData.acc_type,
-  //         firstname: formData.firstname,
-  //         lastname: formData.lastname,
-  //         phonum: formData.phonum,
-  //         address: formData.address,
-  //         nominee: formData.nominee,
-  //         nationality: formData.nationality,
-  //         pannum: formData.pannum,
-  //         aadhar: formData.aadhar,
-  //         balance: formData.balance
-  //     }
-  // }).then((response) => {
-  //     const data = response.data;
-  //     if (data === 'Data Entered Successfully') {
-  //         CustomToast(data, 'success');
-  //     }
-  //     else {
-  //         CustomToast(data, 'error');
-  //     }
-  // });
 }
 
 export default AccountCreation;
