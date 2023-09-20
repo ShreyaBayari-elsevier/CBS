@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './account-details.css';
+import { Link } from 'react-router-dom';
 
 function AccountDetails() {
   const [accountData, setAccountData] = useState({});
@@ -82,7 +83,10 @@ function AccountDetails() {
                   </tr>
             </tbody>
           </table>
-          <button className="btn btn-primary edit-button">Edit Details</button>
+          <Link to="/accountsedit" className='accountedit-link'>
+            <button className="btn btn-primary edit-button">Edit Details</button>
+          </Link>
+          
         </div>
       </div>
     </div>
