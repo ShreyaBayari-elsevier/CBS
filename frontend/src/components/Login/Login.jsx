@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -65,7 +66,15 @@ function Login() {
             required
           />
         </div>
+        <Link to='/Home'>
+          
         <button className="btn btn-success " type="submit"> Login</button>
+        </Link>
+        <Link to='/Signup'>
+          <button type="submit" className="btn btn-primary">
+            Signup
+            </button>
+        </Link>
       </form>
     </div>
   );

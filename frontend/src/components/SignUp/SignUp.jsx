@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
+import { Link, Outlet } from "react-router-dom";
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
@@ -434,11 +435,14 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
+          <Link to='/'>
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
+          </Link>
         </div>
       </form>
+      <Outlet/>
     </div>
   );
 
