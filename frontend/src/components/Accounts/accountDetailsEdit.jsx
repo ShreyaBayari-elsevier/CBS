@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 function AccountDetailsEdit() {
   const [acc_id,setAcc_id]=useState('');
   const [phonum,setPhonum]=useState('');
   const [address,setAddress]=useState('');
   const [nominee,setNominee]=useState('');
+  const navigate = useNavigate();
 
   async function update1(event)
   {
@@ -13,7 +16,7 @@ function AccountDetailsEdit() {
     {
       // axios( URL , RequestBody, Config);
       // axios( URL , { id:1, name:" asdas ",}, { params:{ <requestparam_name>: value} } );
-      await axios.put("http://localhost:8090/api/update" ,
+      await axios.put("http://localhost:8080/api/update" ,
       {
         phonum:phonum,
         address:address,
@@ -22,7 +25,7 @@ function AccountDetailsEdit() {
       {
         params: {id:acc_id}
       });
-      alert("Record updated");
+      navigate('/accounts');
       setAcc_id("");
       setPhonum("");
       setAddress("");
