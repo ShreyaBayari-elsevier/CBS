@@ -30,7 +30,7 @@ function Login() {
       }).then((response)=>{
         console.log("Data : "+response.data);
         localStorage.setItem('user',JSON.stringify(response.data));
-        window.location.pathname="/Home";
+        // window.location.pathname="/Home";
       });
 
     
@@ -68,10 +68,10 @@ function Login() {
             required
           />
         </div>
-        {/* <Link to='/Home'> */}
+        <Link to='/Home'>
           
         <button className="btn btn-success " type="submit"> Login</button>
-        {/* </Link> */}
+        </Link>
         <Link to='/Signup'>
           <button className="btn btn-primary">
             Signup
