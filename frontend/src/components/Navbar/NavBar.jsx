@@ -1,33 +1,33 @@
 import React from 'react';
-import './Navbar.css'; 
-
+import './NavBar.css'; 
+import { Link } from 'react-router-dom'; 
 
 function Navbar() {
 
-  // const [showAccounts, setShowAccounts] = useState(false);
-
-  // const toggleAccounts = () => {
-  //   setShowAccounts(!showAccounts);
-  // };
-
   return (
     <div className="navbar">
-      <img src="OIP.jpg" alt="Elsevier Logo" className="logo" />
-      <h1>Central Banking System</h1>
+      <img src='/logo.png' alt="Elsevier Logo" className="logo" />
+      <h1>Core Banking System</h1>
       <div className="buttons">
-        <button type="submit" className='home'>HOME</button>
-        <button type="submit" className='accounts'>ACCOUNTS</button>
-        <button type="submit" className='transaction'>TRANSACTION</button>
+        <Link to="/home" className='home-link'>
+          <button type="submit" className='home'>HOME</button>
+        </Link>
+        <Link to="/accounts" className='accounts-link'>
+          <button type="submit" className='accounts'>ACCOUNTS</button>
+        </Link>
+        <Link to="/transactions" className='transaction-link'>
+         <button type="submit" className='transaction'>TRANSACTION</button>
+        </Link>
         
-        
-        <button type="submit" className='profile'><img src="R.png" alt="User Profile" className="user-profile" /></button>
+        <Link to="/profile" className='profile-link'>
+          <button type="submit" className='profile'>
+            <img src="userProfile.png" alt="User Profile" className="user-profile" />
+          </button>
+        </Link>
       </div>
-     {/* <div> 
-        {showAccounts && <AccountCreation/>}
-        
-  </div>*/}
     </div>
   );
 }
 
 export default Navbar;
+
