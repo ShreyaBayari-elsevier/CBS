@@ -5,6 +5,7 @@ import Signup from "../components/SignUp/SignUp";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function Main() {
+  // let user = JSON.parse(localStorage.getItem('user')); 
   return (
     <div>
       {/* <Navbar/>
