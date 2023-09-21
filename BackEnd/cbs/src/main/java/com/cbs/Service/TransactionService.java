@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 @Service
 public class TransactionService {
     private TransactionRepository transactionRepository;
@@ -26,34 +27,30 @@ public class TransactionService {
     @Autowired
  	private MongoTemplate mongoTemplate;
 
-    public String performTransaction(String fromAccountNumber, String toAccountNumber, double amount, String t,String date_time, String tc) {
+    public Transaction performTransaction(String fromAccountNumber, String toAccountNumber, double amount, String tranId,String date_time, String tc) {
         // Retrieve sender and receiver accounts
     	String msg=null;
     	Query query = new Query(Criteria.where("acc_id").is(fromAccountNumber));
 	    List<Register> s = mongoTemplate.find(query, Register.class,"account_info");
 	    Register reg=s.get(0);
 	    balance=reg.getBalance();
+	    Transaction transaction = null;
 	    if(balance>amount)
 	    {
 	    	balance -= amount;
 	        reg.setBalance(balance);
 	        repository.save(reg);
-	        Transaction trs=new Transaction(t, fromAccountNumber, amount, balance, date_time, tc, "Debit");
+	        Transaction trs=new Transaction(tranId, fromAccountNumber, amount, balance, date_time, tc, "Debit");
 	        transactionRepository.save(trs);	        
-	        int t1=Integer.parseInt(t);
+	        int t1=Integer.parseInt(tranId);
 	        t1=t1+1;
 	        String t2=String.valueOf(t1);
-	        msg=performCredit(t2,toAccountNumber,amount,date_time,tc);
+	        transaction = performCredit(t2,toAccountNumber,amount,date_time,tc);
 	    }
-	    else
-	    {
-	    	System.out.println("Insufficient balance");
-	    	msg="Insufficient balance";
-	    }
-        return msg;
+        return transaction;
     }
     
-    public String performCredit(String t,String toAccountNumber,Double amount,String date_time,String tc)
+    public Transaction performCredit(String t,String toAccountNumber,Double amount,String date_time,String tc)
     {
     	Query query = new Query(Criteria.where("acc_id").is(toAccountNumber));
 	    List<Register> s = mongoTemplate.find(query, Register.class,"account_info");
@@ -64,14 +61,21 @@ public class TransactionService {
 	    repository.save(reg);
 	    Transaction trs=new Transaction(t, toAccountNumber, amount, balance, date_time, tc, "Credit");
 	    transactionRepository.save(trs);
-    	return "Transaction Successful";
+    	return trs;
     }
     
-    public String getAllTransactions() {
+    public List<Transaction> getAllTransactions(String id) {
     	
-		 List<Transaction> s = transactionRepository.findAll();
-		 Gson gson = new Gson();
-		 String jsonArray = gson.toJson(s);
-		 return jsonArray;
+		 List<Transaction> transactions = transactionRepository.findAll();
+		 
+		 List<Transaction> transactionsById = transactions.stream()
+				    .filter(transaction -> id.equals(transaction.getAcc_id()))
+				    .collect(Collectors.toList());
+		 
+//		 Gson gson = new Gson();
+//		 String jsonArray = gson.toJson(transactionsById);
+//		 return jsonArray;
+		 
+		 return transactionsById;
 	}
 }
