@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,17 +26,29 @@ public class RegisterController {
 	    private RegisterService service;
 
   @GetMapping("/getallaccounts")
-  public String  getAllAccounts(@RequestParam(required = false) String title) {
-	  
-	  
-	  return service.getAllAccounts();
+  public ResponseEntity<List<Register>>  getAllAccounts() {
+	  return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
 	  
   }
 
   @GetMapping("/getaccount")
- 
-  public String getAllAccount(@RequestParam("id") String id) {
-	  return service.getAllAccountsByID(id);
+  public ResponseEntity<Register> getAllAccount(@RequestParam("id") String id) {
+      try {
+          Register account = service.getAllAccountsByID(id);
+
+          if (account != null) {
+              // Create HttpHeaders and set Content-Type to application/json
+              HttpHeaders headers = new HttpHeaders();
+              headers.setContentType(MediaType.APPLICATION_JSON);
+
+              // Return ResponseEntity with headers and OK status
+              return new ResponseEntity<>(account, headers, HttpStatus.OK);
+          } else {
+              return ResponseEntity.notFound().build();
+          }
+      } catch (Exception e) {
+          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+      }
   }
   
   @GetMapping("/getbalance")
@@ -71,17 +82,17 @@ public class RegisterController {
   @DeleteMapping("/delete")
   public String deleteById(@RequestParam("id") String id) {
 	  return service.deleteById(id);
-  }   
-   
+  }
+  
   @GetMapping("/login")
-	public ResponseEntity<Register> login(@RequestParam("id") String id, @RequestParam("pass") String pass) {
-	  Register register = service.login(id, pass);
-	  if(register!=null) {
-		  return new ResponseEntity<Register>(register,HttpStatus.OK);
-	  }
-	  else
-	  {
-		  return new ResponseEntity<Register>(register,HttpStatus.PARTIAL_CONTENT);
-	  }
-	}
+ 	public ResponseEntity<Register> login(@RequestParam("id") String id, @RequestParam("pass") String pass) {
+ 	  Register register = service.login(id, pass);
+ 	  if(register!=null) {
+ 		  return new ResponseEntity<Register>(register,HttpStatus.OK);
+ 	  }
+ 	  else
+ 	  {
+ 		  return new ResponseEntity<Register>(register,HttpStatus.PARTIAL_CONTENT);
+ 	  }
+ 	}
 }

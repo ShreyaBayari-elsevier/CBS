@@ -18,9 +18,18 @@ public class Register {
         private String pannum;
         private long aadhar;
         private Double balance;
+        private String password;
         
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
 		public Register(String acc_id, String acc_type, String firstname, String lastname, long phonum, String address,
-				String nominee, String nationality, String pannum, long aadhar, Double balance) {
+				String nominee, String nationality, String pannum, long aadhar, Double balance, String password) {
 			super();
 			this.acc_id = acc_id;
 			this.acc_type = acc_type;
@@ -33,6 +42,7 @@ public class Register {
 			this.pannum = pannum;
 			this.aadhar = aadhar;
 			this.balance = balance;
+			this.password = password;
 		}
 
 		public String getAcc_id() {
@@ -122,4 +132,4 @@ public class Register {
 		public void setBalance(Double balance) {
 			this.balance = balance;
 		}        		      		
-}      
+} 
