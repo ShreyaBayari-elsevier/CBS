@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import { Link, json } from 'react-router-dom';
+import './Login.css'
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ function Login() {
     event.preventDefault();
 
     try {
-       await axios.get('http://localhost:8090/api/login', {
+       await axios.get('http://localhost:8090/api/register/login', {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "mode":'no-cors'
@@ -28,7 +29,17 @@ function Login() {
           pass: password,
         }
       }).then((response)=>{
-        console.log("Data : "+response.data);
+        if(response.status === 200)
+        {
+          localStorage.setItem('userID',JSON.stringify(response.data.acc_id));
+          const userId = JSON.parse(localStorage.getItem('userID'));
+          console.log(userId);
+        }
+      else
+      alert("Invalid creds");
+    //  let user = JSON.parse(localStorage.getItem('user'));
+    // window.location.pathname="/Home";
+        // console.log(user.acc_id);
       });
 
     
@@ -66,11 +77,15 @@ function Login() {
             required
           />
         </div>
+        {/* <Link to='/Home'> */}
+          
         <button className="btn btn-success " type="submit"> Login</button>
-        <Link to="/signup" className='createAccount-link'>
-          <button className="btn btn-success " type="submit"> Create Account</button>
+        {/* </Link> */}
+        <Link to='/Signup'>
+          <button className="btn btn-primary">
+            Signup
+            </button>
         </Link>
-
       </form>
     </div>
   );

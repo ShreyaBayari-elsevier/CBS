@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.cbs.Document.LoginRegister;
 import com.cbs.Document.Register;
 import com.cbs.Repository.RegisterRepository;
 import com.google.gson.Gson;
@@ -82,4 +83,22 @@ public class RegisterService {
 		repository.deleteById(id);
 		return "Account Deleted Successfully";
 	}	
+	
+	public Register login(String id, String password) {
+		
+		Optional<Register> s = repository.findById(id);
+		if (s.isPresent()) {
+			Register value = s.get();
+		    if(password.equals(value.getPassword())){
+			   return value;
+		    }
+		    else
+		    {
+		    	return null;
+		    }
+		}
+		    else {
+		   return null;
+		    }
+	}
 }
