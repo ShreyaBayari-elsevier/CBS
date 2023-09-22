@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
 import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
@@ -440,35 +441,14 @@ function AccountCreation() {
             Create Account
           </button>
           </Link>
+          </Link>
         </div>
       </form>
+      <Outlet/>
       <Outlet/>
     </div>
   );
 
-  //   await axios.post(apiURL, {}, {
-  //     params: {
-  //         acc_id: formData.acc_id,
-  //         acc_type: formData.acc_type,
-  //         firstname: formData.firstname,
-  //         lastname: formData.lastname,
-  //         phonum: formData.phonum,
-  //         address: formData.address,
-  //         nominee: formData.nominee,
-  //         nationality: formData.nationality,
-  //         pannum: formData.pannum,
-  //         aadhar: formData.aadhar,
-  //         balance: formData.balance
-  //     }
-  // }).then((response) => {
-  //     const data = response.data;
-  //     if (data === 'Data Entered Successfully') {
-  //         CustomToast(data, 'success');
-  //     }
-  //     else {
-  //         CustomToast(data, 'error');
-  //     }
-  // });
 }
 
 export default AccountCreation;
