@@ -441,10 +441,8 @@ function AccountCreation() {
             Create Account
           </button>
           </Link>
-          </Link>
         </div>
       </form>
-      <Outlet/>
       <Outlet/>
     </div>
   );
