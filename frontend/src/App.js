@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {  Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import AccountDetails from './components/Accounts/accountDetails'; // Import AccountDetails component
 import AccountDetailsEdit from './components/Accounts/accountDetailsEdit'; // Import Edit Account Details component
@@ -15,21 +15,25 @@ import Funds from './components/Transaction/TransferFunds';
 
 function App() {
   return (
-    <Router>
+    <div>
+
       <div>
-        {/* Define routes for components */}
-        <Routes> 
-        <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="home" element={<Main />} />
-          <Route path="login" element={<div> <NavBarHome/><div><br/><br/><br/></div> <Login /> </div>} />
-          <Route path="signup" element={<div> <NavBarHome/> <SignUp /> </div>} />
-          <Route path="Transactions" element={<div> <NavBar/> <Transactions /> </div>} />
-          <Route path="AddTransaction" element={<div> <NavBar/> <Funds /> </div>} />
-          <Route path="accounts" element={<div> <NavBar/><AccountDetails /> </div>} />
-          <Route path="accountsedit" element={<div> <NavBar/><AccountDetailsEdit /> </div>} />
-        </Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="home" element={<Main />} />
+            <Route path="login" element={<div> <NavBarHome /><div><br /><br /><br /></div> <Login /> </div>} />
+            <Route path="signup" element={<div> <NavBarHome /> <SignUp /> </div>} />
+            <Route path="Transactions" element={<div> <NavBar /> <Transactions /> </div>} />
+            <Route path="AddTransaction" element={<div> <NavBar /> <Funds /> </div>} />
+            <Route path="accounts" element={<div> <NavBar /><AccountDetails /> </div>} />
+            <Route path="accountsedit" element={<div> <NavBar /><AccountDetailsEdit /> </div>} />
+
+          </Routes>
+        </BrowserRouter>
       </div>
-    </Router>
+      <Outlet />
+    </div>
   );
 }
 

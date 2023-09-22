@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
-import { Link, Outlet } from "react-router-dom";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
@@ -38,7 +37,10 @@ function AccountCreation() {
   const [hasEnteredConfirm, setHasEnteredConfirm] = useState(false);
 
   // const params = new URLSearchParams(formData);
-  const apiURL = " http://localhost:8090/api/createaccount?"; // + params.toString();
+  const apiURL = " http://localhost:8090/api/register/createaccount?"; // + params.toString();
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -188,6 +190,7 @@ function AccountCreation() {
           console.log("some error");
         }
       });
+      navigate('/login');
     } else {
       alert("Password doesnt match!");
     }
@@ -436,11 +439,9 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
-          <Link to='/'>
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-          </Link>
         </div>
       </form>
       <Outlet/>

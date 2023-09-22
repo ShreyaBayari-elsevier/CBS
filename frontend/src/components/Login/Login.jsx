@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, json } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+ const navigate = useNavigate();
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -32,14 +32,10 @@ function Login() {
         if(response.status === 200)
         {
           localStorage.setItem('userID',JSON.stringify(response.data.acc_id));
-          const userId = JSON.parse(localStorage.getItem('userID'));
-          console.log(userId);
+          navigate('/home');
         }
       else
       alert("Invalid creds");
-    //  let user = JSON.parse(localStorage.getItem('user'));
-    // window.location.pathname="/Home";
-        // console.log(user.acc_id);
       });
 
     

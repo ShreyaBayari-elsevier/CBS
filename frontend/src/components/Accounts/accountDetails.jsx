@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 function AccountDetails() {
   const [accountData, setAccountData] = useState({});
-  const accountId = "ACC002"; // Static ID
+  const userId = JSON.parse(localStorage.getItem('userID'));
+  const accountId = userId; // Static ID
 
   useEffect(() => {
     // Fetch account details from API on page load
@@ -14,7 +15,7 @@ function AccountDetails() {
   }, [accountId]);
 
   const fetchAccountDetails = (accountId) => {
-    axios.get(`http://localhost:8080/api/getaccount?id=${accountId}`)
+    axios.get(`http://localhost:8090/api/register/getaccount?id=${accountId}`)
       .then((response) => {
         if (response.status !== 200) {
           throw new Error('Network response was not ok');
