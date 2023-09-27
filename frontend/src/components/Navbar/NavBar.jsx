@@ -1,13 +1,13 @@
 import React from 'react';
 import './NavBar.css'; 
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 
 function NavBar() {
   const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.clear();
-    navigate("/");
-  };
+    navigate('/');
+  }
   return (
     <div className="navbar">
       <img src='/logo.png' alt="Elsevier Logo" className="logo" />
@@ -23,11 +23,10 @@ function NavBar() {
          <button type="submit" className='transaction'>TRANSACTION</button>
         </Link>
         
-        <Link to="/profile" className='profile-link'>
-          <button type="submit" className='profile'>
+       
+          <button type="submit" className='profile' onClick={logoutHandler}>
             <img src="userProfile.png" alt="User Profile" className="user-profile" />
           </button>
-        </Link>
       </div>
     </div>
   );
