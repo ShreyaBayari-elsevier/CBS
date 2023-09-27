@@ -22,7 +22,7 @@ function AccountCreation() {
     password: "",
   });
 
-  const [hasEnteredText, setHasEnteredText] = useState(false);
+  const [hasEnteredId, setHasEnteredId] = useState(false);
   const [hasEnteredType, setHasEnteredType] = useState(false);
   const [hasEnteredFirst, setHasEnteredFirst] = useState(false);
   const [hasEnteredLast, setHasEnteredLast] = useState(false);
@@ -34,7 +34,25 @@ function AccountCreation() {
   const [hasEnteredAadhar, setHasEnteredAadhar] = useState(false);
   const [hasEnteredBalance, setHasEnteredBalance] = useState(false);
   const [hasEnteredPassword, setHasEnteredPassword] = useState(false);
-  const [hasEnteredConfirm, setHasEnteredConfirm] = useState(false);
+  // const [hasEnteredConfirm, setHasEnteredConfirm] = useState(false);
+
+  const fields = {
+    acc_id: { setter: hasEnteredId, getter: setHasEnteredId },
+    acc_type: { setter: hasEnteredType, getter: setHasEnteredType },
+    firstname: { setter: hasEnteredFirst, getter: setHasEnteredFirst },
+    lastname: { setter: hasEnteredLast, getter: setHasEnteredLast },
+    phonum: { setter: hasEnteredPhone, getter: setHasEnteredPhone },
+    address: { setter: hasEnteredAddress, getter: setHasEnteredAddress },
+    nominee: { setter: hasEnteredNominee, getter: setHasEnteredNominee },
+    nationality: {
+      setter: hasEnteredNationality,
+      getter: setHasEnteredNationality,
+    },
+    pannum: { setter: hasEnteredPan, getter: setHasEnteredPan },
+    aadhar: { setter: hasEnteredAadhar, getter: setHasEnteredAadhar },
+    balance: { setter: hasEnteredBalance, getter: setHasEnteredBalance },
+    password: { setter: hasEnteredPassword, getter: setHasEnteredPassword },
+  };
 
   // const params = new URLSearchParams(formData);
   const apiURL = " http://localhost:8090/api/register/createaccount?"; // + params.toString();
@@ -48,6 +66,10 @@ function AccountCreation() {
       [name]: value,
     });
 
+    const setter = fields[name]["getter"];
+    const isValid = value.trim() !== "";
+    setter(isValid);
+
     // if (value.trim() !== "") {
     //   setHasEnteredText(true);
     // } else {
@@ -60,98 +82,94 @@ function AccountCreation() {
     //   setHasEnteredType(false);
     // }
     console.log(name);
-    if (name === "acc_id") {
-      if (value.trim() !== "") {
-        setHasEnteredText(true);
-      } else {
-        setHasEnteredText(false);
-      }
-    }
-    if (name === "acc_type") {
-      if (value.trim() !== "") {
-        setHasEnteredType(true);
-      } else {
-        setHasEnteredType(false);
-      }
-    }
-    if (name === "firstname") {
-      if (value.trim() !== "") {
-        setHasEnteredFirst(true);
-      } else {
-        setHasEnteredFirst(false);
-      }
-    }
-    if (name === "lastname") {
-      if (value.trim() !== "") {
-        setHasEnteredLast(true);
-      } else {
-        setHasEnteredLast(false);
-      }
-    }
-    if (name === "phonum") {
-      if (value.trim() !== "") {
-        setHasEnteredPhone(true);
-      } else {
-        setHasEnteredPhone(false);
-      }
-    }
-    if (name === "address") {
-      if (value.trim() !== "") {
-        setHasEnteredAddress(true);
-      } else {
-        setHasEnteredAddress(false);
-      }
-    }
-    if (name === "nominee") {
-      if (value.trim() !== "") {
-        setHasEnteredNominee(true);
-      } else {
-        setHasEnteredNominee(false);
-      }
-    }
-    if (name === "nationality") {
-      if (value.trim() !== "") {
-        setHasEnteredNationality(true);
-      } else {
-        setHasEnteredNationality(false);
-      }
-    }
-    if (name === "pannum") {
-      if (value.trim() !== "") {
-        setHasEnteredPan(true);
-      } else {
-        setHasEnteredPan(false);
-      }
-    }
-    if (name === "aadhar") {
-      if (value.trim() !== "") {
-        setHasEnteredAadhar(true);
-      } else {
-        setHasEnteredAadhar(false);
-      }
-    }
-    if (name === "balance") {
-      if (value.trim() !== "") {
-        setHasEnteredBalance(true);
-      } else {
-        setHasEnteredBalance(false);
-      }
-    }
-    if (name === "password") {
-      if (value.trim() !== "") {
-        setHasEnteredPassword(true);
-      } else {
-        setHasEnteredPassword(false);
-      }
-    }
+    //   if (name === "acc_id") {
+    //     setHasEnteredId(value.trim() !== "");
+    //   }
+    //   if (name === "acc_type") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredType(true);
+    //     } else {
+    //       setHasEnteredType(false);
+    //     }
+    //   }
+    //   if (name === "firstname") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredFirst(true);
+    //     } else {
+    //       setHasEnteredFirst(false);
+    //     }
+    //   }
+    //   if (name === "lastname") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredLast(true);
+    //     } else {
+    //       setHasEnteredLast(false);
+    //     }
+    //   }
+    //   if (name === "phonum") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredPhone(true);
+    //     } else {
+    //       setHasEnteredPhone(false);
+    //     }
+    //   }
+    //   if (name === "address") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredAddress(true);
+    //     } else {
+    //       setHasEnteredAddress(false);
+    //     }
+    //   }
+    //   if (name === "nominee") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredNominee(true);
+    //     } else {
+    //       setHasEnteredNominee(false);
+    //     }
+    //   }
+    //   if (name === "nationality") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredNationality(true);
+    //     } else {
+    //       setHasEnteredNationality(false);
+    //     }
+    //   }
+    //   if (name === "pannum") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredPan(true);
+    //     } else {
+    //       setHasEnteredPan(false);
+    //     }
+    //   }
+    //   if (name === "aadhar") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredAadhar(true);
+    //     } else {
+    //       setHasEnteredAadhar(false);
+    //     }
+    //   }
+    //   if (name === "balance") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredBalance(true);
+    //     } else {
+    //       setHasEnteredBalance(false);
+    //     }
+    //   }
+    //   if (name === "password") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredPassword(true);
+    //     } else {
+    //       setHasEnteredPassword(false);
+    //     }
+    //   }
 
-    if (name === "confirmPassword") {
-      if (value.trim() !== "") {
-        setHasEnteredConfirm(true);
-      } else {
-        setHasEnteredConfirm(false);
-      }
-    }
+    //   if (name === "confirmPassword") {
+    //     if (value.trim() !== "") {
+    //       setHasEnteredConfirm(true);
+    //     } else {
+    //       setHasEnteredConfirm(false);
+    //     }
+    //   }
   };
 
   const handleConfirmPass = (e) => {
@@ -221,7 +239,7 @@ function AccountCreation() {
           <input
             type="text"
             className={`form-control ${
-              hasEnteredText ? "is-valid" : "is-invalid"
+              hasEnteredId ? "is-valid" : "is-invalid"
             }`}
             id="accountId"
             name="acc_id"
@@ -429,7 +447,7 @@ function AccountCreation() {
           </label>
           <input
             type="password"
-            className={`form-control ${hasEnteredConfirm ? "is-valid" : ""}`}
+            className="form-control"
             id="confirmPassword"
             name="confirmPassword"
             onChange={handleConfirmPass}
@@ -439,12 +457,20 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
+<<<<<<< Updated upstream
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
+=======
+          <Link to="/">
+            <button type="submit" className="btn btn-primary">
+              Create Account
+            </button>
+          </Link>
+>>>>>>> Stashed changes
         </div>
       </form>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 
