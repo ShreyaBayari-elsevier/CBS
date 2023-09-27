@@ -9,7 +9,8 @@ const Transactions = () => {
     const [transactionData, setTransactionData] = useState([]);
         
     useEffect(() => {
-        fetchTransactions(1);
+        const userId = JSON.parse(localStorage.getItem('userID'));
+        fetchTransactions(userId);
     }, [])
     const fetchTransactions = (accountId) => {
         api.get(apiURL, {
