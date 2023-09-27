@@ -3,7 +3,11 @@ import './NavBar.css';
 import { Link } from 'react-router-dom'; 
 
 function NavBar() {
-
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <div className="navbar">
       <img src='/logo.png' alt="Elsevier Logo" className="logo" />
