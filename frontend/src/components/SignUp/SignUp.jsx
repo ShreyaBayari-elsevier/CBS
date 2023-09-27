@@ -69,119 +69,11 @@ function AccountCreation() {
     const setter = fields[name]["getter"];
     const isValid = value.trim() !== "";
     setter(isValid);
-
-    // if (value.trim() !== "") {
-    //   setHasEnteredText(true);
-    // } else {
-    //   setHasEnteredText(false);
-    // }
-
-    // if (value.trim() !== "") {
-    //   setHasEnteredType(true);
-    // } else {
-    //   setHasEnteredType(false);
-    // }
-    console.log(name);
-    //   if (name === "acc_id") {
-    //     setHasEnteredId(value.trim() !== "");
-    //   }
-    //   if (name === "acc_type") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredType(true);
-    //     } else {
-    //       setHasEnteredType(false);
-    //     }
-    //   }
-    //   if (name === "firstname") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredFirst(true);
-    //     } else {
-    //       setHasEnteredFirst(false);
-    //     }
-    //   }
-    //   if (name === "lastname") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredLast(true);
-    //     } else {
-    //       setHasEnteredLast(false);
-    //     }
-    //   }
-    //   if (name === "phonum") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredPhone(true);
-    //     } else {
-    //       setHasEnteredPhone(false);
-    //     }
-    //   }
-    //   if (name === "address") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredAddress(true);
-    //     } else {
-    //       setHasEnteredAddress(false);
-    //     }
-    //   }
-    //   if (name === "nominee") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredNominee(true);
-    //     } else {
-    //       setHasEnteredNominee(false);
-    //     }
-    //   }
-    //   if (name === "nationality") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredNationality(true);
-    //     } else {
-    //       setHasEnteredNationality(false);
-    //     }
-    //   }
-    //   if (name === "pannum") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredPan(true);
-    //     } else {
-    //       setHasEnteredPan(false);
-    //     }
-    //   }
-    //   if (name === "aadhar") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredAadhar(true);
-    //     } else {
-    //       setHasEnteredAadhar(false);
-    //     }
-    //   }
-    //   if (name === "balance") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredBalance(true);
-    //     } else {
-    //       setHasEnteredBalance(false);
-    //     }
-    //   }
-    //   if (name === "password") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredPassword(true);
-    //     } else {
-    //       setHasEnteredPassword(false);
-    //     }
-    //   }
-
-    //   if (name === "confirmPassword") {
-    //     if (value.trim() !== "") {
-    //       setHasEnteredConfirm(true);
-    //     } else {
-    //       setHasEnteredConfirm(false);
-    //     }
-    //   }
   };
 
   const handleConfirmPass = (e) => {
     setPassword(e.target.value);
   };
-
-  // const isNumeric = name === 'amount' ? !isNaN(parseFloat(value)) && isFinite(value) : true;
-  //     setIsValid({
-  //         ...isValid,
-  //         [name]: value.trim() !== ''
-  //     });
-  // };
 
   async function createAcc() {
     if (formData.password === confirmPassword) {
@@ -457,17 +349,9 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
-<<<<<<< Updated upstream
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-=======
-          <Link to="/">
-            <button type="submit" className="btn btn-primary">
-              Create Account
-            </button>
-          </Link>
->>>>>>> Stashed changes
         </div>
       </form>
       <Outlet />
