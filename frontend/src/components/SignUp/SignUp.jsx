@@ -457,17 +457,9 @@ function AccountCreation() {
         </div>
 
         <div style={{ marginTop: "10px", textAlign: "center" }} text-center>
-<<<<<<< Updated upstream
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-=======
-          <Link to="/">
-            <button type="submit" className="btn btn-primary">
-              Create Account
-            </button>
-          </Link>
->>>>>>> Stashed changes
         </div>
       </form>
       <Outlet />

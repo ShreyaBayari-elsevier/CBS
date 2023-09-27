@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 function Login() {
+  localStorage.clear();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
  const navigate = useNavigate();
