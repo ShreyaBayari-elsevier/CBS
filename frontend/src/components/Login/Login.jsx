@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   localStorage.clear();
@@ -20,36 +20,35 @@ function Login() {
     event.preventDefault();
 
     try {
-       await axios.get('http://localhost:8090/api/register/login', {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "mode":'no-cors'
-        },
-        params: {
-          id: username,
-          pass: password,
-        }
-      }).then((response)=>{
-        if(response.status === 200)
-        {
-          localStorage.setItem('userID',JSON.stringify(response.data.acc_id));
-          navigate('/home');
-        }
-      else
-      alert("Invalid creds");
-      });
-
-    
+      await axios
+        .get("http://localhost:8080/api/register/login", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            mode: "no-cors",
+          },
+          params: {
+            id: username,
+            pass: password,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            localStorage.setItem(
+              "userID",
+              JSON.stringify(response.data.acc_id)
+            );
+            navigate("/home");
+          } else alert("Invalid creds");
+        });
     } catch (error) {
       // Handle network or other errors.
-      console.error('Network error:'+ error);
+      console.error("Network error:" + error);
     }
   };
 
   return (
     <div className="login-container">
-<h2 className="mb-4">Login</h2>
- 
+      <h2 className="mb-4">Login</h2>
 
       <form onSubmit={handleLogin}>
         <div className="form-control">
@@ -75,13 +74,18 @@ function Login() {
           />
         </div>
         {/* <Link to='/Home'> */}
-          
-        <button className="btn btn-success " type="submit"> Login</button>
+
+        <button className="btn btn-success " type="submit">
+          {" "}
+          Login
+        </button>
         {/* </Link> */}
-        <Link to='/Signup'>
-          <button className="btn btn-primary">
-            Signup
-            </button>
+        <Link to="/Signup">
+          <button className="btn btn-primary">Signup</button>
+        </Link>
+
+        <Link to="/forgotpassword">
+          <a>Forgot password?</a>
         </Link>
       </form>
     </div>

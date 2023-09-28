@@ -11,17 +11,18 @@ import Main from './pages/Main';
 import Transactions from './components/Transaction/Transactions';
 import Funds from './components/Transaction/TransferFunds';
 import CustomRoute from './services/CustomRoute';
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
     <div>
-
       <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="login" element={<div> <NavBarHome /><div><br /><br /><br /></div> <Login /> </div>} />
             <Route path="signup" element={<div> <NavBarHome /> <SignUp /> </div>} />
+            <Route path="forgotpassword" element={<div> <NavBarHome /><div><br /><br /><br /></div> <ForgotPassword /> </div>} />
 
             <Route path="home" element={<CustomRoute><Main /></CustomRoute>} />
             <Route path="Transactions" element={<><CustomRoute> <NavBar /> <Transactions /> </CustomRoute></>} />
