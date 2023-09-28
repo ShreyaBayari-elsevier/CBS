@@ -22,77 +22,85 @@ import com.cbs.Service.RegisterService;
 @RestController
 @RequestMapping("/api/register")
 public class RegisterController {
-	  @Autowired
-	    private RegisterService service;
+  @Autowired
+  private RegisterService service;
 
   @GetMapping("/getallaccounts")
-  public ResponseEntity<List<Register>>  getAllAccounts() {
-	  return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
-	  
+  public ResponseEntity<List<Register>> getAllAccounts() {
+    return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
+
   }
 
   @GetMapping("/getaccount")
   public ResponseEntity<Register> getAllAccount(@RequestParam("id") String id) {
-      try {
-          Register account = service.getAllAccountsByID(id);
+    try {
+      Register account = service.getAllAccountsByID(id);
 
-          if (account != null) {
-              // Create HttpHeaders and set Content-Type to application/json
-              HttpHeaders headers = new HttpHeaders();
-              headers.setContentType(MediaType.APPLICATION_JSON);
+      if (account != null) {
+        // Create HttpHeaders and set Content-Type to application/json
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-              // Return ResponseEntity with headers and OK status
-              return new ResponseEntity<>(account, headers, HttpStatus.OK);
-          } else {
-              return ResponseEntity.notFound().build();
-          }
-      } catch (Exception e) {
-          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        // Return ResponseEntity with headers and OK status
+        return new ResponseEntity<>(account, headers, HttpStatus.OK);
+      } else {
+        return ResponseEntity.notFound().build();
       }
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
-  
+
   @GetMapping("/getbalance")
-  
+
   public Double getBalance(@RequestParam("id") String id) {
-	  return service.getBalance(id);
+    return service.getBalance(id);
   }
-  
-//  @GetMapping("/returninterest")
-//  
-//  public double returnInterest(@RequestParam("id") String id) {
-//	  return service.returnInterest(id);
-//  }
-  
+
+  // @GetMapping("/returninterest")
+  //
+  // public double returnInterest(@RequestParam("id") String id) {
+  // return service.returnInterest(id);
+  // }
+
   @PostMapping("/createaccount")
-  
+
   public String createAccount(@RequestBody Register role) {
-	  return service.createAccount(role);
+    return service.createAccount(role);
   }
-  
+
   @PostMapping("/createmultipleaccounts")
   public String createAccounts(@RequestBody List<Register> role) {
-	  return service.createAccounts(role);
+    return service.createAccounts(role);
   }
-  
+
   @PutMapping("/update")
-  public String updateById(@RequestParam("id") String id,@RequestBody Register role) {
-	  return service.updateById(id,role);
+  public String updateById(@RequestParam("id") String id, @RequestBody Register role) {
+    return service.updateById(id, role);
   }
-  
+
   @DeleteMapping("/delete")
   public String deleteById(@RequestParam("id") String id) {
-	  return service.deleteById(id);
+    return service.deleteById(id);
   }
-  
+
   @GetMapping("/login")
- 	public ResponseEntity<Register> login(@RequestParam("id") String id, @RequestParam("pass") String pass) {
- 	  Register register = service.login(id, pass);
- 	  if(register!=null) {
- 		  return new ResponseEntity<Register>(register,HttpStatus.OK);
- 	  }
- 	  else
- 	  {
- 		  return new ResponseEntity<Register>(register,HttpStatus.PARTIAL_CONTENT);
- 	  }
- 	}
+  public ResponseEntity<Register> login(@RequestParam("id") String id, @RequestParam("pass") String pass) {
+    Register register = service.login(id, pass);
+    if (register != null) {
+      return new ResponseEntity<Register>(register, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<Register>(register, HttpStatus.PARTIAL_CONTENT);
+    }
+  }
+
+  @PutMapping("/updatePassword")
+  public ResponseEntity<String> updatePassword(@RequestParam("id") String id, @RequestParam("pass") String pass) {
+    try {
+      service.updatePassword(id, pass);
+      return ResponseEntity.ok("Password updated successfully");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating password");
+    }
+  }
 }

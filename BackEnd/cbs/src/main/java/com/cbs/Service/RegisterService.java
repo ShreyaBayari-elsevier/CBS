@@ -15,87 +15,89 @@ import com.google.gson.Gson;
 @Service
 public class RegisterService {
 
-	 @Autowired
-	    private RegisterRepository repository;
+	@Autowired
+	private RegisterRepository repository;
 
-	
-	
 	public String getAllAccounts() {
-	
-		 List<Register> s = repository.findAll();
-		 Gson gson = new Gson();
-		    String jsonArray = gson.toJson(s);
-		 return jsonArray;
+
+		List<Register> s = repository.findAll();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(s);
+		return jsonArray;
 	}
-	
+
 	public Register getAllAccountsByID(String id) {
-	    Optional<Register> optionalRegister = repository.findById(id);
-	    return optionalRegister.orElse(null); // Return null if not found
+		Optional<Register> optionalRegister = repository.findById(id);
+		return optionalRegister.orElse(null); // Return null if not found
 	}
-	
+
 	public String createAccount(Register role) {
 		// TODO Auto-generated method stub
 		repository.save(role);
 		return "Account Created Successfully";
-	}  
-	
+	}
+
 	public String createAccounts(List<Register> role) {
 		// TODO Auto-generated method stub
 		repository.saveAll(role);
 		return "Account Created Successfully";
 	}
-	
-	public Double getBalance(String id)
-	{
+
+	public Double getBalance(String id) {
 		Optional<Register> r = repository.findById(id);
-		 Gson gson = new Gson();
-		 String jsonArray = gson.toJson(r.get());
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(r.get());
 		JsonObject jsonObject = new Gson().fromJson(jsonArray, JsonObject.class);
 		Double bal = jsonObject.get("balance").getAsDouble();
 		return bal;
 	}
-	
-	public double returnInterest(String id)
-	{
+
+	public double returnInterest(String id) {
 		Optional<Register> r = repository.findById(id);
-		 Gson gson = new Gson();
-		 String jsonArray = gson.toJson(r.get());
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(r.get());
 		JsonObject jsonObject = new Gson().fromJson(jsonArray, JsonObject.class);
 		float bal = jsonObject.get("balance").getAsFloat();
-		double interest=(bal*4*0.5)/100;
+		double interest = (bal * 4 * 0.5) / 100;
 		return interest;
 	}
-	
+
 	public String updateById(String id, Register role) {
 		Optional<Register> r = repository.findById(id);
-		Register r1= r.get();
+		Register r1 = r.get();
 		r1.setPhonum(role.getPhonum());
 		r1.setAddress(role.getAddress());
 		r1.setNominee(role.getNominee());
 		repository.save(r1);
 		return "Account Updated Successfully";
 	}
-	
+
 	public String deleteById(String id) {
 		repository.deleteById(id);
 		return "Account Deleted Successfully";
-	}	
-	
+	}
+
 	public Register login(String id, String password) {
-		
+
 		Optional<Register> s = repository.findById(id);
 		if (s.isPresent()) {
 			Register value = s.get();
-		    if(password.equals(value.getPassword())){
-			   return value;
-		    }
-		    else
-		    {
-		    	return null;
-		    }
+			if (password.equals(value.getPassword())) {
+				return value;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
 		}
-		    else {
-		   return null;
-		    }
+	}
+
+	public void updatePassword(String id, String password) {
+		Register user = repository.findById(id)
+				.orElseThrow();
+
+		user.setPassword(password);
+		repository.save(user);
+
 	}
 }
