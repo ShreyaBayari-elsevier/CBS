@@ -18,12 +18,12 @@ public class RegisterService {
 	@Autowired
 	private RegisterRepository repository;
 
-	public String getAllAccounts() {
+	public List<Register>  getAllAccounts() {
 
 		List<Register> s = repository.findAll();
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(s);
-		return jsonArray;
+		return s;
 	}
 
 	public Register getAllAccountsByID(String id) {
