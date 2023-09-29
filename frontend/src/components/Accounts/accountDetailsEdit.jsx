@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function AccountDetailsEdit() {
@@ -25,6 +25,9 @@ function AccountDetailsEdit() {
       })
       .then((data) => {
         setAccountData(data);
+        setPhonum(data.phonum);
+        setAddress(data.address)
+        
       })
       .catch((error) => {
         console.error('Error fetching account details:', error);

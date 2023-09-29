@@ -10,6 +10,7 @@ import SignUp from './components/SignUp/SignUp'; // Import SignUp component
 import Main from './pages/Main';
 import Transactions from './components/Transaction/Transactions';
 import Funds from './components/Transaction/TransferFunds';
+import Statement from './components/Statement/statement';
 // import TransactionComponent from './components/Transaction/TransactionComponent'; // Import Transaction component
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="AddTransaction" element={<div> <NavBar /> <Funds /> </div>} />
             <Route path="accounts" element={<div> <NavBar /><AccountDetails /> </div>} />
             <Route path="accountsedit" element={<div> <NavBar /><AccountDetailsEdit /> </div>} />
+            <Route path="statement" element={<div><NavBar/><Statement/></div>}/>
 
           </Routes>
         </BrowserRouter>
