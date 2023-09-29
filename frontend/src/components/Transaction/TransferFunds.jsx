@@ -1,62 +1,61 @@
 import React, { useState } from "react";
 import api from "../../services/axios.js";
-import { useNavigate } from "react-router-dom"; 
-
+import { useNavigate } from "react-router-dom";
 const apiURL =  "api/transaction?";
 const Funds = () => {
     const [formData, setFormData] = useState({
         fromAcc: '',
         toAcc: '',
+        confirmToAcc: '',
         amount: '',
         transId: '',
         dateTime: '',
         transCat: ''
     });
-
     const [isValid, setIsValid] = useState({
         fromAcc: false,
         toAcc: false,
+        confirmToAcc: false,
         amount: false,
         transId: false,
         dateTime: false,
         transCat: false
     });
-
     const navigate = useNavigate();
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-
         setIsValid({
             ...isValid,
             [name]: value.trim() !== '' && value !=='0'
         });
+        if (name === 'confirmToAcc') {
+            setIsValid({
+                ...isValid,
+                confirmToAcc: value === formData.toAcc
+            });
+        }
     };
-
     const TransferFunds = async (formData) =>{
-        try { 
+        try {
             await api.post(apiURL, {}, {
-    
                 params: {
                     fromAcc: formData.fromAcc,
                     toAcc: formData.toAcc,
                     amount: formData.amount,
                     transId: formData.transId,
                     dateTime: formData.dateTime,
-                    transCat: formData.transCat            
+                    transCat: formData.transCat
                 }
             }
-            
-            
             ).then((response) => {
                 const data = response.status;
                 if (data === 200) {
                      alert("Success")
-                    navigate('/Transactions');             
+                    navigate('/Transactions');
                 }
                 else {
                     alert("Failed")
@@ -67,14 +66,16 @@ const Funds = () => {
             console.log("Error : " + error);
         }
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        const isAllValid = Object.values(isValid).every((valid) => valid);
+        if (isAllValid) {
         TransferFunds(formData);
-        
+        }
+        else{
+            alert('Please fill out all fields correctly.');
+        }
     };
-
     return (
         <div className="container">
             <h1 className="text-center">Transfer Funds</h1>
@@ -92,7 +93,12 @@ const Funds = () => {
                         </label>
                         <input type="text" className={`form-control ${isValid.toAcc ? 'is-valid' : 'is-invalid'}`} id="toAcc" name="toAcc" value={formData.toAcc} onChange={handleChange} placeholder="Receivers Account Number" required />
                     </div>
-
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="confirmToAcc" className="form-label">
+                            Confirm Recipient Account Number:
+                        </label>
+                        <input type="text" className={`form-control ${isValid.confirmToAcc ? 'is-valid' : 'is-invalid'}`} id="confirmToAcc" name="confirmToAcc" value={formData.confirmToAcc} onChange={handleChange} placeholder="Confirm Recipient's Account Number" required />
+                    </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="from" className="form-label">
                             Amount :
@@ -128,8 +134,6 @@ const Funds = () => {
                 </div>
             </form >
         </div >
-
     );
 };
-
 export default Funds;
