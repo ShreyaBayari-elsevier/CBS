@@ -12,10 +12,12 @@ import Transactions from './components/Transaction/Transactions';
 import Funds from './components/Transaction/TransferFunds';
 import CustomRoute from './services/CustomRoute';
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import Statement from './components/Statement/statement';
 
 function App() {
   return (
     <div>
+
       <div>
         <BrowserRouter>
           <Routes>
@@ -29,7 +31,7 @@ function App() {
             <Route path="AddTransaction" element={<CustomRoute> <NavBar /> <Funds /> </CustomRoute>} />
             <Route path="accounts" element={<CustomRoute> <NavBar /><AccountDetails /> </CustomRoute>} />
             <Route path="accountsedit" element={<CustomRoute> <NavBar /><AccountDetailsEdit /> </CustomRoute>} />
-
+            <Route path="statement" element={<div><CustomRoute><NavBar/><Statement/></CustomRoute></div>}/>
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </BrowserRouter>
