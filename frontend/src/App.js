@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import AccountDetails from './components/Accounts/accountDetails'; // Import AccountDetails component
 import AccountDetailsEdit from './components/Accounts/accountDetailsEdit'; // Import Edit Account Details component
@@ -10,9 +10,9 @@ import SignUp from './components/SignUp/SignUp'; // Import SignUp component
 import Main from './pages/Main';
 import Transactions from './components/Transaction/Transactions';
 import Funds from './components/Transaction/TransferFunds';
+import CustomRoute from './services/CustomRoute';
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Statement from './components/Statement/statement';
-// import TransactionComponent from './components/Transaction/TransactionComponent'; // Import Transaction component
-
 
 function App() {
   return (
@@ -22,15 +22,17 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="home" element={<Main />} />
             <Route path="login" element={<div> <NavBarHome /><div><br /><br /><br /></div> <Login /> </div>} />
             <Route path="signup" element={<div> <NavBarHome /> <SignUp /> </div>} />
-            <Route path="Transactions" element={<div> <NavBar /> <Transactions /> </div>} />
-            <Route path="AddTransaction" element={<div> <NavBar /> <Funds /> </div>} />
-            <Route path="accounts" element={<div> <NavBar /><AccountDetails /> </div>} />
-            <Route path="accountsedit" element={<div> <NavBar /><AccountDetailsEdit /> </div>} />
-            <Route path="statement" element={<div><NavBar/><Statement/></div>}/>
+            <Route path="forgotpassword" element={<div> <NavBarHome /><div><br /><br /><br /></div> <ForgotPassword /> </div>} />
 
+            <Route path="home" element={<CustomRoute><Main /></CustomRoute>} />
+            <Route path="Transactions" element={<><CustomRoute> <NavBar /> <Transactions /> </CustomRoute></>} />
+            <Route path="AddTransaction" element={<CustomRoute> <NavBar /> <Funds /> </CustomRoute>} />
+            <Route path="accounts" element={<CustomRoute> <NavBar /><AccountDetails /> </CustomRoute>} />
+            <Route path="accountsedit" element={<CustomRoute> <NavBar /><AccountDetailsEdit /> </CustomRoute>} />
+            <Route path="statement" element={<div><CustomRoute><NavBar/><Statement/></CustomRoute></div>}/>
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </BrowserRouter>
       </div>

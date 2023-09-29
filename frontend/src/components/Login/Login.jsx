@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  localStorage.clear();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+ const navigate = useNavigate();
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
