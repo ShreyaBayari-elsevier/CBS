@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cbs.Service.InterestService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api")
 public class InterestController {

@@ -11,6 +11,7 @@ import com.cbs.Repository.LoginRepository;
 import com.cbs.Repository.RegisterRepository;
 import com.google.gson.Gson;
 
+@SuppressWarnings("unused")
 @Service
 public class LoginService {
 

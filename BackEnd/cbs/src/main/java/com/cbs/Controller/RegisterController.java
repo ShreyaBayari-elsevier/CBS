@@ -3,7 +3,9 @@ package com.cbs.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +27,21 @@ public class RegisterController {
 	  @Autowired
 	    private RegisterService service;
 
+//  @GetMapping("/getallaccounts")
+//  public ResponseEntity<List<Register>>  getAllAccounts() {
+//	  return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
+//	  
+//  }
+//  
+//  
+
   @GetMapping("/getallaccounts")
-  public ResponseEntity<List<Register>>  getAllAccounts() {
-	  return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
-	  
+  public ResponseEntity<String> getAllAccounts() {
+      String jsonArray = service.getAllAccounts();
+      return ResponseEntity.ok(jsonArray);
   }
 
+	  
   @GetMapping("/getaccount")
   public ResponseEntity<Register> getAllAccount(@RequestParam("id") String id) {
       try {

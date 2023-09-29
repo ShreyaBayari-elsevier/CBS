@@ -12,6 +12,7 @@ import com.cbs.Document.Register;
 import com.cbs.Repository.RegisterRepository;
 import com.google.gson.Gson;
 
+@SuppressWarnings("unused")
 @Service
 public class RegisterService {
 
@@ -21,11 +22,10 @@ public class RegisterService {
 	
 	
 	public String getAllAccounts() {
-	
-		 List<Register> s = repository.findAll();
-		 Gson gson = new Gson();
-		    String jsonArray = gson.toJson(s);
-		 return jsonArray;
+	    List<Register> accounts = repository.findAll();
+	    Gson gson = new Gson();
+	    String jsonArray = gson.toJson(accounts);
+	    return jsonArray;
 	}
 	
 	public Register getAllAccountsByID(String id) {

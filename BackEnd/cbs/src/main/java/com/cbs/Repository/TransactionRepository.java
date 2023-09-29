@@ -6,6 +6,7 @@ import com.cbs.Document.Transaction;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
 //	List<Transaction> findByAcc(String acc_id);
 //	List<Transaction> findByTc(String transaction_category);

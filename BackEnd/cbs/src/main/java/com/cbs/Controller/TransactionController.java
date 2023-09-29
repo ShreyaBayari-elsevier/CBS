@@ -11,6 +11,7 @@ import com.cbs.Service.TransactionService;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbs.Service.LoginService;
+@SuppressWarnings("unused")
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
