@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function ForgotPassword() {
 
     axios
       .put(
-        "http://localhost:8080/api/register/updatePassword",
+        "http://localhost:8090/api/register/updatePassword",
         {},
         {
           params: {

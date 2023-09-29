@@ -27,7 +27,7 @@ function AccountDetailsEdit() {
         setAccountData(data);
         setPhonum(data.phonum);
         setAddress(data.address)
-        
+        setNominee(data.nominee)
       })
       .catch((error) => {
         console.error('Error fetching account details:', error);
