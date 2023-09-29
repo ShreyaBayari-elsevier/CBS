@@ -22,11 +22,10 @@ function NavBar() {
         <Link to="/transactions" className='transaction-link'>
          <button type="submit" className='transaction'>TRANSACTION</button>
         </Link>
-        
-       
-          <button type="submit" className='profile' onClick={logoutHandler}>
-            <img src="userProfile.png" alt="User Profile" className="user-profile" />
-          </button>
+            
+        <button type="submit" className='profile' onClick={logoutHandler}>
+          <img src="userProfile.png" alt="User Profile" className="user-profile" />
+        </button>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@ import NavBar from './components/NavBar/NavBar'; // Import Navbar component
 import NavBarHome from './components/NavBarHome/NavBarHome'; //Import Home Nav Bar
 import SignUp from './components/SignUp/SignUp'; // Import SignUp component
 import Main from './pages/Main';
-import Transactions from './components/Transaction/Transactions';
-import Funds from './components/Transaction/TransferFunds';
-// import TransactionComponent from './components/Transaction/TransactionComponent'; // Import Transaction component
+import Transactions from './components/Transaction/Transactions';// Import Transaction component
+import Funds from './components/Transaction/TransferFunds';// Import TransactionFunds component
+
 
 
 function App() {

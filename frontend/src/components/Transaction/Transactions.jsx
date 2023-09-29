@@ -7,11 +7,14 @@ const apiURL = "api/gettransactions?";
 
 const Transactions = () => {
     const [transactionData, setTransactionData] = useState([]);
+    const [fromDate, setFromDate] = useState(""); // State for "from" date
+    const [toDate, setToDate] = useState(""); // State for "to" date
         
     useEffect(() => {
         const userId = JSON.parse(localStorage.getItem('userID'));
         fetchTransactions(userId);
     }, [])
+
     const fetchTransactions = (accountId) => {
         api.get(apiURL, {
             params: {
@@ -22,12 +25,68 @@ const Transactions = () => {
             setTransactionData(response.data)
         });
     }
+
+    const handleFromDateChange = (event) => {
+        setFromDate(event.target.value);
+    };
+    
+    const handleToDateChange = (event) => {
+        setToDate(event.target.value);
+    };
+    
+    const handleFilterTransactions = () => {
+        // Call the create PDF API with the selected date range
+        const userId = JSON.parse(localStorage.getItem('userID'));
+        api.get("api/createPdf?", {
+            responseType: 'arraybuffer',
+            params: {
+                acc_id: userId,
+                t1: fromDate,
+                t2: toDate
+
+            }
+        }).then((response) => {
+             // Create a Blob object from the binary response data
+            const blob = new Blob([response.data], { type: 'application/pdf' });
+
+            // Create a URL for the Blob object
+            const pdfUrl = URL.createObjectURL(blob);
+
+            // Open the generated PDF in a new window or tab
+            window.open(pdfUrl);
+
+            alert("Statement PDF Downloaded");
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+          });
+    };
+
     
     return (
         <div className="container">
             <Link to='/AddTransaction'>
                 <button className="transferFund" >Transfer Fund</button>
             </Link>
+
+             {/* Date input fields */}
+            <div className="date-inputs">
+                <br /><br />
+                <input
+                    type="date"
+                    placeholder="From Date"
+                    value={fromDate}
+                    onChange={handleFromDateChange}
+                />
+                <input
+                    type="date"
+                    placeholder="To Date"
+                    value={toDate}
+                    onChange={handleToDateChange}
+                />
+                <button onClick={handleFilterTransactions}>Download Statement</button>
+            </div>
+            <br /><br /><br />
             <table className="table table-bordered">
                 <tbody>
                     <tr>

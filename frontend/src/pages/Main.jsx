@@ -5,7 +5,9 @@ function Main(){
     return(
         <div>
             <NavBar/>
-            <p>WELCOME TO CENTRAL BANKING SYSTEM!</p>
+            <div className="main-container">
+                <h1 className="welcome-text">WELCOME TO CORE BANKING SYSTEM!</h1>
+            </div>   
         </div>
     );
 }

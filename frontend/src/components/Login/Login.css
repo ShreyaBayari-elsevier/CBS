@@ -1,7 +1,9 @@
 /* Login.css */
-/* Login.css */
 
-/* Center the container both horizontally and vertically */
+.body-login {
+  background-color: #ccc4bf;
+}
+
 /* Center the container both horizontally and vertically */
 .login-container {
   width: 300px;

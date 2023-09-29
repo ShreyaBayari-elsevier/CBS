@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
@@ -44,6 +44,16 @@ function Login() {
       console.error('Network error:'+ error);
     }
   };
+
+  useEffect(() => {
+    // Apply the CSS class when the component mounts
+    document.body.classList.add('body-login');
+
+    // Remove the CSS class when the component unmounts
+    return () => {
+      document.body.classList.remove('body-login');
+    };
+  }, []);
 
   return (
     <div className="login-container">

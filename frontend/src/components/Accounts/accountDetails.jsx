@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 function AccountDetails() {
   const [accountData, setAccountData] = useState({});
   const userId = JSON.parse(localStorage.getItem('userID'));
-  const accountId = userId; // Static ID
+  console.log(userId);
+  const accountId = userId; 
 
   useEffect(() => {
     // Fetch account details from API on page load
@@ -29,6 +30,7 @@ function AccountDetails() {
         console.error('Error fetching account details:', error);
       });
   };
+  
 
   return (
     <div className="container account-details">
