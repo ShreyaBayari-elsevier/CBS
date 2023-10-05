@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import axios from "axios";
+// const axios = require("axios");
 
-function ForgotPassword() {
+const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -49,7 +50,7 @@ function ForgotPassword() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-control">
-          <label htmlFor="id">Username:</label>
+          <label id="id" htmlFor="id" name="id" data-testid="Username">Username:</label>
           <input
             type="text"
             id="id"
