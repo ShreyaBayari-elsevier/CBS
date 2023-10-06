@@ -26,7 +26,7 @@ const Transactions = () => {
     return (
         <div className="container">
             <Link to='/AddTransaction'>
-                <button className="transferFund" >Transfer Fund</button>
+                <button className="transferFund" aria-label="addButton" >Transfer Fund</button>
             </Link>
             <table className="table table-bordered">
                 <tbody>
