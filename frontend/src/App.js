@@ -4,7 +4,7 @@ import './App.css';
 import AccountDetails from './components/Accounts/accountDetails'; // Import AccountDetails component
 import AccountDetailsEdit from './components/Accounts/accountDetailsEdit'; // Import Edit Account Details component
 import Login from './components/Login/Login'; // Import Login component
-import NavBar from './components/NavBar/NavBar'; // Import Navbar component
+import NavBar from './components/Navbar/NavBar'; // Import Navbar component
 import NavBarHome from './components/NavBarHome/NavBarHome'; //Import Home Nav Bar
 import SignUp from './components/SignUp/SignUp'; // Import SignUp component
 import Main from './pages/Main';
