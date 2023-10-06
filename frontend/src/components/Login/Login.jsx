@@ -57,6 +57,7 @@ function Login() {
             type="text"
             id="username"
             name="username"
+            data-testid="Username"
             value={username}
             onChange={handleUsernameChange}
             required
@@ -68,6 +69,7 @@ function Login() {
             type="password"
             id="password"
             name="password"
+            data-testid="Password"
             value={password}
             onChange={handlePasswordChange}
             required
