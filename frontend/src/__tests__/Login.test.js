@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 describe("Login test suite ", () => {
 
-    test("render Login component in the document", ()=> {
+    test("render password component in the document", ()=> {
     const component = render(<MemoryRouter><Login/></MemoryRouter>);
     const childElement = component.getByTestId("Password");
     expect(childElement).toBeInTheDocument();
