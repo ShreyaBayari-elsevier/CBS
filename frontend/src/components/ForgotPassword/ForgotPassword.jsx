@@ -49,7 +49,7 @@ function ForgotPassword() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-control">
-          <label htmlFor="id">Username:</label>
+          <label htmlFor="id" data-testid="Username">Username:</label>
           <input
             type="text"
             id="id"
