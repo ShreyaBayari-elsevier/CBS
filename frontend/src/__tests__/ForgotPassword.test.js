@@ -34,6 +34,23 @@ test('Displays alert message on form submission', async() => {
                 })
 });
 
+test('Displays error message if fields arent filled', async() => {
+    window.alert = jest.fn();
+    axios.put = jest.fn().mockImplementation(()=>{
+        return Promise.reject({data:{
+            success:true
+        }});
+    });
+    const { getByTestId } = render(<MemoryRouter><ForgotPassword/></MemoryRouter>);
+
+  
+    fireEvent.submit(getByTestId("Reset"));
+    await waitFor(()=>{
+        // expect(window.alert).toHaveBeenCalledTimes(1);
+        expect(window.alert).toHaveBeenCalledWith("Error updating password");
+                })
+});
+
 
 });
 
