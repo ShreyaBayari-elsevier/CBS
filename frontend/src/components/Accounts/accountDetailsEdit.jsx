@@ -51,23 +51,25 @@ function AccountDetailsEdit() {
           nominee: nominee
         },
         {
-
           params: { id: acc_ID }
+        }).then(()=>{
+          alert("successful");
         });
-      navigate('/accounts');
-      setAcc_id("");
-      setPhonum("");
-      setAddress("");
-      setNominee("");
-    }
-    catch (err) {
-      alert("Updation failed");
+        
+        navigate('/accounts');
+        setAcc_id("");
+        setPhonum("");
+        setAddress("");
+        setNominee("");
+      }
+      catch (err) {
+        alert("Updation failed");
     }
   }
 
   return (
     <div className="container mt-5">
-      <form>
+      <form onSubmit={update1}>
         <div className="mb-3">
           <label htmlFor="acc_id" className="form-label" aria-label="acc_no">Account Number</label>
           <input type="text" className="form-control" data-testid="acc_id" placeholder="Enter Account Number" required
@@ -105,7 +107,7 @@ function AccountDetailsEdit() {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary" aria-label="subbtn" onClick={update1} data-testid="submit">Submit</button>
+        <button type="submit" className="btn btn-primary" aria-label="subbtn" data-testid="submit">Submit</button>
 
       </form>
     </div>

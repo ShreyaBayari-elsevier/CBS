@@ -77,22 +77,33 @@ describe('AccountDetailsEdit', () => {
         expect(nominee_placeholder).toBeInTheDocument(); 
 
     });
-    test("test the submit button",async()=>{
-        window.alert = jest.fn()
-        axios.put = jest.fn().mockImplementation(()=>{
-            return Promise.reject({data:{
-                success:false
+    test("test the submit button when updation fails",async()=>{
+            window.alert = jest.fn()
+            axios.put = jest.fn().mockImplementation(()=>{
+                return Promise.reject({data:{
+                    success:false
+                }});
+        })
+        const { getByTestId } = render(<MemoryRouter><AccountDetailsEdit/></MemoryRouter>);
+        fireEvent.submit(getByTestId("submit"));
+        await waitFor(()=>{
+            expect(window.alert).toHaveBeenCalledWith("Updation failed");
+        })
+    });
+
+    
+    test("test the submit button for successful updation",async()=>{
+        window.alert=jest.fn();
+        axios.put=jest.fn().mockImplementation(()=>{
+            return Promise.resolve({data:{
+                success:true
             }});
+        })
+        const {getByTestId} = render(<MemoryRouter><AccountDetailsEdit/></MemoryRouter>);
+        fireEvent.submit(getByTestId("submit"));
+        await waitFor(()=>{
+            expect(window.alert).toHaveBeenCalledWith("successful")
+        })
     })
-    const { getByTestId } = render(<MemoryRouter><AccountDetailsEdit/></MemoryRouter>);
-
-  
-    fireEvent.submit(getByTestId("submit"));
-    await waitFor(()=>{
-
-        expect(window.alert).toHaveBeenCalledWith("Updation failed");
-                })
-
-});
 });
 
