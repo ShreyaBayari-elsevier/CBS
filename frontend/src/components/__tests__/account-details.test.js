@@ -7,8 +7,17 @@ describe("Account-Details test suite ", () => {
 
     test('renders account details correctly', () => {
         const mockAccountData = {
-          acc_id: 'acc_1',
-          acc_type: 'Savings'
+          acc_id: "ACC005",
+          acc_type: "Savings",
+          firstname: "Meera",
+          lastname: "Patil",
+          phonum: 9876543214,
+          address: "202 Cedar Street, Bangalore",
+          nominee: "Avinash Patil",
+          nationality: "Indian",
+          pannum: "XYZAB9012C",
+          aadhar: 777788889999,
+          balance: 9500.00  
         };
       
         // Mock localStorage.getItem to return a user ID
@@ -25,6 +34,16 @@ describe("Account-Details test suite ", () => {
         // Assert that the component renders expected account details
         expect(getByText('Account ID')).toBeInTheDocument();
         expect(getByText('Account Type')).toBeInTheDocument();
+        expect(getByText('First Name')).toBeInTheDocument();
+        expect(getByText('Second Name')).toBeInTheDocument();
+        expect(getByText('Phone Number')).toBeInTheDocument();
+        expect(getByText('Address')).toBeInTheDocument();
+        expect(getByText('Nominee')).toBeInTheDocument();
+        expect(getByText('Nationality')).toBeInTheDocument();
+        expect(getByText('PAN Card Number')).toBeInTheDocument();
+        expect(getByText('Aadhar Number')).toBeInTheDocument();
+        expect(getByText('Balance')).toBeInTheDocument();
+        
        
       });
 
