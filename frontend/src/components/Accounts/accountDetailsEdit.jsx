@@ -69,7 +69,7 @@ function AccountDetailsEdit() {
     <div className="container mt-5">
       <form>
         <div className="mb-3">
-          <label htmlFor="acc_id" className="form-label" >Account Number</label>
+          <label htmlFor="acc_id" className="form-label" aria-label="acc_no">Account Number</label>
           <input type="text" className="form-control" data-testid="acc_id" placeholder="Enter Account Number" required
             value={accountData.acc_id}
             disabled
@@ -77,7 +77,8 @@ function AccountDetailsEdit() {
         </div>
         <div className="role">
           <div className="mb-3">
-            <label for="phonum" className="form-label">Phone Number</label>
+            <label htmlFor="phonum" className="form-label">Phone Number</label>
+            {/* <label for="phonum" className="form-label">Phone Number</label> */}
             <input type="text" className="form-control" data-testid="phonum" placeholder="Enter Phone Number" required
               value={phonum}
               onChange={(event) => {
@@ -86,7 +87,7 @@ function AccountDetailsEdit() {
             />
           </div>
           <div className="mb-3">
-            <label for="address" className="form-label">Address</label>
+            <label htmlFor="address" className="form-label">Address</label>
             <textarea className="form-control" data-testid="address" rows="3" placeholder="Enter Address" required
               value={address}
               onChange={(event) => {
@@ -95,7 +96,7 @@ function AccountDetailsEdit() {
             />
           </div>
           <div className="mb-3">
-            <label for="nominee" className="form-label">Nominee</label>
+            <label htmlFor="nominee" className="form-label">Nominee</label>
             <input type="text" className="form-control" data-testid="nominee" placeholder="Enter Nominee Name" required
               value={nominee}
               onChange={(event) => {
@@ -104,7 +105,7 @@ function AccountDetailsEdit() {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary" aria-label="subbtn" onClick={update1}>Submit</button>
+        <button type="submit" className="btn btn-primary" aria-label="subbtn" onClick={update1} data-testid="submit">Submit</button>
 
       </form>
     </div>
