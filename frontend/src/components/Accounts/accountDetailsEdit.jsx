@@ -15,8 +15,9 @@ function AccountDetailsEdit() {
   
   useEffect (() => {
     const userId = JSON.parse(localStorage.getItem('userID'));
-
-    axios.get(`http://localhost:8090/api/register/getaccount?id=${userId}`)
+    (async ()=>{
+      
+      axios.get(`http://localhost:8090/api/register/getaccount?id=${userId}`)
       .then((response) => {
         if (response.status !== 200) {
           throw new Error('Network response was not ok');
@@ -24,14 +25,16 @@ function AccountDetailsEdit() {
         return response.data;
       })
       .then((data) => {
+        console.log(data)
         setAccountData(data);
         setPhonum(data.phonum);
-        setAddress(data.address)
-        
+        setAddress(data.address);
+        setNominee(data.nominee)
       })
       .catch((error) => {
-        console.error('Error fetching account details:', error);
+        //    console.log('Error fetching account details:'+ error);
       });
+    })()
   },[])
 
   async function update1(event) {
@@ -63,37 +66,37 @@ function AccountDetailsEdit() {
   }
 
   return (
-    <div class="container mt-5">
+    <div className="container mt-5">
       <form>
-        <div class="mb-3">
-          <label for="acc_id" class="form-label">Account Number</label>
-          <input type="text" class="form-control" id="acc_id" placeholder="Enter Account Number" required
+        <div className="mb-3">
+          <label htmlFor="acc_id" className="form-label" >Account Number</label>
+          <input type="text" className="form-control" data-testid="acc_id" placeholder="Enter Account Number" required
             value={accountData.acc_id}
             disabled
           />
         </div>
-        <div class="role">
-          <div class="mb-3">
-            <label for="phonum" class="form-label">Phone Number</label>
-            <input type="text" className="form-control" id="phonum" placeholder="Enter Phone Number" required
+        <div className="role">
+          <div className="mb-3">
+            <label for="phonum" className="form-label">Phone Number</label>
+            <input type="text" className="form-control" data-testid="phonum" placeholder="Enter Phone Number" required
               value={phonum}
               onChange={(event) => {
                 setPhonum(event.target.value);
               }}
             />
           </div>
-          <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <textarea class="form-control" id="address" rows="3" placeholder="Enter Address" required
+          <div className="mb-3">
+            <label for="address" className="form-label">Address</label>
+            <textarea className="form-control" data-testid="address" rows="3" placeholder="Enter Address" required
               value={address}
               onChange={(event) => {
                 setAddress(event.target.value);
               }}
             />
           </div>
-          <div class="mb-3">
-            <label for="nominee" class="form-label">Nominee</label>
-            <input type="text" class="form-control" id="nominee" placeholder="Enter Nominee Name" required
+          <div className="mb-3">
+            <label for="nominee" className="form-label">Nominee</label>
+            <input type="text" className="form-control" data-testid="nominee" placeholder="Enter Nominee Name" required
               value={nominee}
               onChange={(event) => {
                 setNominee(event.target.value);
@@ -101,7 +104,7 @@ function AccountDetailsEdit() {
             />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" onClick={update1}>Submit</button>
+        <button type="submit" className="btn btn-primary" aria-label="subbtn" onClick={update1}>Submit</button>
 
       </form>
     </div>

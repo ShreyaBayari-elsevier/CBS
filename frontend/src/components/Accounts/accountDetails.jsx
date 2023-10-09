@@ -35,7 +35,7 @@ function AccountDetails() {
             <br/>    <br/>    <br/>    <br/>    <br/>
       <div className="panel-body inf-content">
         <div className="table-container">
-          <strong>Account Information</strong>
+          <strong aria-label="Account_Information">Account Information</strong>
           <table className="table table-user-information">
             <tbody>
             <tr>
