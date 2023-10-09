@@ -1,8 +1,8 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from 'react';
 import { MemoryRouter } from "react-router";
-import AccountDetails from "./accountDetails"
-import AccountDetailsEdit from "./accountDetailsEdit"
+import AccountDetails from "../components/Accounts/accountDetails";
+import AccountDetailsEdit from "../components/Accounts/accountDetailsEdit";
 // jest.mock('axios');
 // jest.mock('react-router-dom');
 // jest.mock('react-router-dom', () => ({
