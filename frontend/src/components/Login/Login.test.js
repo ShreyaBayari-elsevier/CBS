@@ -1,7 +1,7 @@
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
-import Login from '../components/Login/Login';
+import Login from '../Login/Login';
 
 describe('Test Suit',() => {
 
