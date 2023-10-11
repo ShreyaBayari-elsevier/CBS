@@ -6,14 +6,14 @@ import Login from '../Login/Login';
 describe('Test Suit', () => {
 
   
-  test('renders login button', () => {
+  it ('should renders login button', () => {
     const screen = render(<MemoryRouter><Login/></MemoryRouter>);
 
     const loginButton = screen.getByTestId('login-button');
     expect(loginButton).toBeInTheDocument();
   });
 
-  test('renders login when the button is not clicked', () => {
+  it('should renders login when the button is not clicked', () => {
     const screen = render(<MemoryRouter><Login/></MemoryRouter>);
         
     const loginHeader = screen.getByText('Login', { selector: 'h2' });
