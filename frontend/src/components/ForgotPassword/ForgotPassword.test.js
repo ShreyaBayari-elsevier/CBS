@@ -5,7 +5,6 @@ import axios from "axios";
 
 let getByTestId, resolve, reject;
 window.alert = jest.fn();
-// const alert = jest.fn();
 
 function renderMemoryRouter() {
   return render(
@@ -16,7 +15,6 @@ function renderMemoryRouter() {
 }
 
 function mockImplement(status) {
-  // window.alert = jest.fn();
   if (status === resolve) {
     axios.put = jest.fn().mockImplementation(() => {
       return Promise.resolve({
@@ -25,11 +23,11 @@ function mockImplement(status) {
         },
       });
     });
-  } else if (status === reject) {
+  } else {
     axios.put = jest.fn().mockImplementation(() => {
       return Promise.reject({
         data: {
-          success: false,
+          success: true,
         },
       });
     });
