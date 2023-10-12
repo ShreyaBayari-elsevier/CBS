@@ -28,11 +28,9 @@ describe('Test Suit', () => {
 
   
   
-  test('should check if the login button is working', async () => {
+  it('should check if the login button is working', async () => {
     
     const alertMock = jest.spyOn(window, 'alert');  // Mock the alert function to capture its calls
-  
-    
     const axiosGetMock = jest.spyOn(axios, 'get');   // Mock the Axios get method to simulate a successful response (status: 200)
     axiosGetMock.mockResolvedValue({
       status: 200, 
