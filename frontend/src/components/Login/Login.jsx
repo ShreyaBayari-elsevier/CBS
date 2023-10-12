@@ -37,6 +37,8 @@ function Login() {
               "userID",
               JSON.stringify(response.data.acc_id)
             );
+            alert('Logged in');
+
             navigate("/home");
           } else alert("Invalid creds");
         });
@@ -50,7 +52,7 @@ function Login() {
     <div className="login-container">
       <h2 className="mb-4">Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} data-testid="login" >
         <div className="form-control">
           <label htmlFor="username">Username:</label>
           <input
