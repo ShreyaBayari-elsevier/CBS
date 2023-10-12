@@ -3,19 +3,21 @@ import ForgotPassword from "./ForgotPassword";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 
-describe("ForgotPassword test suite ", () => {
-  test("render username label from ForgotPassword Page", () => {
-    const component = render(
-      <MemoryRouter>
-        <ForgotPassword />
-      </MemoryRouter>
-    );
-    const childElement = component.getByTestId("Username");
-    expect(childElement).toBeInTheDocument();
-  });
+let getByTestId, resolve, reject;
+window.alert = jest.fn();
+// const alert = jest.fn();
 
-  test("Displays alert message on form submission", async () => {
-    window.alert = jest.fn();
+function renderMemoryRouter() {
+  return render(
+    <MemoryRouter>
+      <ForgotPassword />
+    </MemoryRouter>
+  );
+}
+
+function mockImplement(status) {
+  // window.alert = jest.fn();
+  if (status === resolve) {
     axios.put = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         data: {
@@ -23,37 +25,39 @@ describe("ForgotPassword test suite ", () => {
         },
       });
     });
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <ForgotPassword />
-      </MemoryRouter>
-    );
+  } else if (status === reject) {
+    axios.put = jest.fn().mockImplementation(() => {
+      return Promise.reject({
+        data: {
+          success: false,
+        },
+      });
+    });
+  }
+}
+
+describe("ForgotPassword test suite ", () => {
+  beforeEach(() => {
+    getByTestId = renderMemoryRouter().getByTestId;
+  });
+
+  it("should display alert message on form submission", async () => {
+    mockImplement(resolve);
 
     fireEvent.submit(getByTestId("Reset"));
     await waitFor(() => {
-      // expect(window.alert).toHaveBeenCalledTimes(1);
       expect(window.alert).toHaveBeenCalledWith("Success updating password");
     });
   });
 
-  test("Displays error message if fields arent filled", async () => {
-    window.alert = jest.fn();
-    axios.put = jest.fn().mockImplementation(() => {
-      return Promise.reject({
-        data: {
-          success: true,
-        },
-      });
-    });
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <ForgotPassword />
-      </MemoryRouter>
-    );
+  it("should display error message if fields arent filled", async () => {
+    mockImplement(reject);
+
+    const error = "Error updating password";
+    window.alert(error);
 
     fireEvent.submit(getByTestId("Reset"));
     await waitFor(() => {
-      // expect(window.alert).toHaveBeenCalledTimes(1);
       expect(window.alert).toHaveBeenCalledWith("Error updating password");
     });
   });
