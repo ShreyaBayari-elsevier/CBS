@@ -29,13 +29,13 @@ describe('Test Suit', () => {
   
   
   test('should check if the login button is working', async () => {
-    // Mock the alert function to capture its calls
-    const alertMock = jest.spyOn(window, 'alert');
+    
+    const alertMock = jest.spyOn(window, 'alert');  // Mock the alert function to capture its calls
   
-    // Mock the Axios get method to simulate a successful response (status: 200)
-    const axiosGetMock = jest.spyOn(axios, 'get');
+    
+    const axiosGetMock = jest.spyOn(axios, 'get');   // Mock the Axios get method to simulate a successful response (status: 200)
     axiosGetMock.mockResolvedValue({
-      status: 200, // Simulate a successful response status
+      status: 200, 
       data: {
         success:true,
       },
@@ -52,11 +52,11 @@ describe('Test Suit', () => {
   
     // Wait for any asynchronous operations to complete
     await waitFor(() => {
-      // Assert that the alert function was called with the expected message
-      expect(alertMock).toHaveBeenCalledWith('Logged in');
+     
+      expect(alertMock).toHaveBeenCalledWith('Logged in');    // Assert that the alert function was called with the expected message
     });
   
-    // Restore the original alert function and Axios get method after the test
+    
     alertMock.mockRestore();
     axiosGetMock.mockRestore();
   });
