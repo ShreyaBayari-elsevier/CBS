@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import api from "../../services/axios.js";
 import { useNavigate } from "react-router-dom";
+import {BASE_URL} from '../../services/constants.js';
+import axios from "axios";
 const apiURL =  "api/transaction?";
 const Funds = () => {
     const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const Funds = () => {
     };
     const TransferFunds = async (formData) =>{
         try {
-            await api.post(apiURL, {}, {
+            await axios.post(BASE_URL + apiURL, {}, {
                 params: {
                     fromAcc: formData.fromAcc,
                     toAcc: formData.toAcc,
@@ -85,43 +86,43 @@ const Funds = () => {
                         <label htmlFor="from" className="form-label text-start">
                             Sender Account Number :
                         </label>
-                        <input type="text" className={`form-control ${isValid.fromAcc ? 'is-valid' : 'is-invalid'}`} id="fromAcc" name="fromAcc" value={formData.fromAcc} onChange={handleChange} placeholder="Senders Account Number" required />
+                        <input type="text" className={`form-control ${isValid.fromAcc ? 'is-valid' : 'is-invalid'}`} aria-label="fromAcc" id="fromAcc" name="fromAcc" value={formData.fromAcc} onChange={handleChange} placeholder="Senders Account Number" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="from" className="form-label">
                             Recipient Account Number :
                         </label>
-                        <input type="text" className={`form-control ${isValid.toAcc ? 'is-valid' : 'is-invalid'}`} id="toAcc" name="toAcc" value={formData.toAcc} onChange={handleChange} placeholder="Receivers Account Number" required />
+                        <input type="text" className={`form-control ${isValid.toAcc ? 'is-valid' : 'is-invalid'}`} aria-label="toAcc" id="toAcc" name="toAcc" value={formData.toAcc} onChange={handleChange} placeholder="Receivers Account Number" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="confirmToAcc" className="form-label">
                             Confirm Recipient Account Number:
                         </label>
-                        <input type="text" className={`form-control ${isValid.confirmToAcc ? 'is-valid' : 'is-invalid'}`} id="confirmToAcc" name="confirmToAcc" value={formData.confirmToAcc} onChange={handleChange} placeholder="Confirm Recipient's Account Number" required />
+                        <input type="text" className={`form-control ${isValid.confirmToAcc ? 'is-valid' : 'is-invalid'}`} aria-label="confirmToAcc" id="confirmToAcc" name="confirmToAcc" value={formData.confirmToAcc} onChange={handleChange} placeholder="Confirm Recipient's Account Number" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="from" className="form-label">
                             Amount :
                         </label>
-                        <input type="number" className={`form-control ${isValid.amount ? 'is-valid' : 'is-invalid'}`} id="amount" name="amount" value={formData.amount} onChange={handleChange} min={1} placeholder="Amount" required />
+                        <input type="number" className={`form-control ${isValid.amount ? 'is-valid' : 'is-invalid'}`} aria-label="amount" id="amount" name="amount" value={formData.amount} onChange={handleChange} min={1} placeholder="Amount" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="transactionId" className="form-label">
                             Transaction ID :
                         </label>
-                        <input type="text" className={`form-control ${isValid.transId ? 'is-valid' : 'is-invalid'}`} id="transId" name="transId" value={formData.transId} onChange={handleChange} placeholder="Transaction ID" required />
+                        <input type="text" className={`form-control ${isValid.transId ? 'is-valid' : 'is-invalid'}`} aria-label="transId" id="transId" name="transId" value={formData.transId} onChange={handleChange} placeholder="Transaction ID" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="dateTime" className="form-label">
                             Date and Time :
                         </label>
-                        <input type="datetime-local" className={`form-control ${isValid.dateTime ? 'is-valid' : 'is-invalid'}`} id="dateTime" name="dateTime" value={formData.dateTime} onChange={handleChange} placeholder="Date and Time" required />
+                        <input type="datetime-local" className={`form-control ${isValid.dateTime ? 'is-valid' : 'is-invalid'}`} aria-label="dateTime" id="dateTime" name="dateTime" value={formData.dateTime} onChange={handleChange} placeholder="Date and Time" required />
                     </div>
                     <div className="col-md-6 mb-3">
                         <label htmlFor="dateTime" className="form-label">
                             Transaction Type:
                         </label>
-                        <select className={`form-control ${isValid.transCat ? 'is-valid' : 'is-invalid'}`} id="transCat" value={formData.transCat} onChange={handleChange} name="transCat" required>
+                        <select className={`form-control ${isValid.transCat ? 'is-valid' : 'is-invalid'}`} aria-label="transCat" id="transCat" value={formData.transCat} onChange={handleChange} name="transCat" required>
                             <option disabled value="">Select a Transaction type</option>
                             <option >UPI</option>
                             <option >NEFT</option>
