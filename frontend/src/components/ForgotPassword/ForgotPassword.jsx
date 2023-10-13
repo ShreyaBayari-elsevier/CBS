@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {Link,  useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function ForgotPassword() {
+const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -34,7 +34,9 @@ function ForgotPassword() {
         }
       )
       .then((response) => {
-        alert(response.data);
+        // alert(response.data);
+        alert('Success updating password');
+        // alert("Success updating password");
         navigate("/login");
       })
       .catch((error) => {
@@ -47,9 +49,9 @@ function ForgotPassword() {
     <div className="login-container">
       <h2 className="mb-4">RESET PASSWORD</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="Reset" >
         <div className="form-control">
-          <label htmlFor="id">Username:</label>
+          <label id="id" htmlFor="id" name="id" data-testid="Username">Username:</label>
           <input
             type="text"
             id="id"
@@ -84,7 +86,7 @@ function ForgotPassword() {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" >
           Reset Password
         </button>
       </form>

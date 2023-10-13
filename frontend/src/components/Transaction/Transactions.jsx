@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/axios.js";
 import './Transaction.css'
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../services/constants.js";
 
 const apiURL = "api/gettransactions?";
 
@@ -13,7 +14,7 @@ const Transactions = () => {
         fetchTransactions(userId);
     }, [])
     const fetchTransactions = (accountId) => {
-        api.get(apiURL, {
+        axios.get(BASE_URL + apiURL, {
             params: {
                 id: accountId
             }
@@ -26,7 +27,7 @@ const Transactions = () => {
     return (
         <div className="container">
             <Link to='/AddTransaction'>
-                <button className="transferFund" >Transfer Fund</button>
+                <button className="transferFund" aria-label="addButton" >Transfer Fund</button>
             </Link>
             <table className="table table-bordered">
                 <tbody>

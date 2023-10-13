@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignUp.css";
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function AccountCreation() {
   const [confirmPassword, setPassword] = useState("");
