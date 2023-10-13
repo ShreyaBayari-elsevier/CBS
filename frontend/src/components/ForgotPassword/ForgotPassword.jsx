@@ -34,7 +34,9 @@ const ForgotPassword = () => {
         }
       )
       .then((response) => {
-        alert(response.data);
+        // alert(response.data);
+        alert('Success updating password');
+        // alert("Success updating password");
         navigate("/login");
       })
       .catch((error) => {
@@ -47,7 +49,7 @@ const ForgotPassword = () => {
     <div className="login-container">
       <h2 className="mb-4">RESET PASSWORD</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="Reset" >
         <div className="form-control">
           <label id="id" htmlFor="id" name="id" data-testid="Username">Username:</label>
           <input
@@ -84,7 +86,7 @@ const ForgotPassword = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" >
           Reset Password
         </button>
       </form>
