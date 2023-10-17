@@ -6,9 +6,31 @@ import { MemoryRouter } from 'react-router-dom';
 
 describe("Account-Details test suite ", () => {
 
+    const mockAccountData = {
+    acc_id: "acc_5",
+    acc_type: "Savings",
+    firstname: "Meera",
+    lastname: "Patil",
+    phonum: 9876543214,
+    address: "202 Cedar Street, Bangalore",
+    nominee: "Avinash Patil",
+    nationality: "Indian",
+    pannum: "XYZAB9012C",
+    aadhar: 777788889999,
+    balance: 9500.00
+  };
+
+  // // Mock localStorage.getItem to return a user ID
+  // jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => JSON.stringify({ userID: 'acc_5' }));
+
+
   let getByText;
 
   beforeEach(()=>{
+    localStorage.setItem('userID', JSON.stringify('acc_5'));
+    // Mock axios.get to return mockAccountData
+    jest.spyOn(axios, 'get').mockResolvedValue({ data: mockAccountData });
+
     const {getByText:getByTextRender} = render(<MemoryRouter><AccountDetails /></MemoryRouter>);        
     getByText = getByTextRender;
 });
