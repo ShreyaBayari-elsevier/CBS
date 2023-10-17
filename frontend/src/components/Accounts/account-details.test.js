@@ -33,8 +33,7 @@ describe("Account-Details test suite ", () => {
 
     const {getByText:getByTextRender} = render(<MemoryRouter><AccountDetails /></MemoryRouter>);        
     getByText = getByTextRender;
-});
-
+  });
 
   it(' should render account ID details correctly', () => {
     expect(getByText('Account ID')).toBeInTheDocument();
