@@ -1,0 +1,11 @@
+/* Main.css */
+.main-container {
+    text-align: center;
+    padding: 20px;
+    margin-top: 300px;
+
+}
+
+.welcome-text {
+    font-size: 2rem; 
+}
