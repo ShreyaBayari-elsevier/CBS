@@ -72,16 +72,16 @@ function AccountDetailsEdit() {
       <form onSubmit={update1}>
         <div className="mb-3">
           <label htmlFor="acc_id" className="form-label" aria-label="acc_no">Account Number</label>
-          <input type="text" className="form-control" data-testid="acc_id" placeholder="Enter Account Number" required
+          <input type="text" className="form-control" aria-label="acc_id" placeholder="Enter Account Number" required
             value={accountData.acc_id}
             disabled
           />
         </div>
         <div className="role">
           <div className="mb-3">
-            <label htmlFor="phonum" className="form-label">Phone Number</label>
+            <label htmlFor="phonum" className="form-label" >Phone Number</label>
             {/* <label for="phonum" className="form-label">Phone Number</label> */}
-            <input type="text" className="form-control" data-testid="phonum" placeholder="Enter Phone Number" required
+            <input type="text" className="form-control" data-testid="phonum" aria-label="phone_no" placeholder="Enter Phone Number" required
               value={phonum}
               onChange={(event) => {
                 setPhonum(event.target.value);
@@ -90,7 +90,7 @@ function AccountDetailsEdit() {
           </div>
           <div className="mb-3">
             <label htmlFor="address" className="form-label">Address</label>
-            <textarea className="form-control" data-testid="address" rows="3" placeholder="Enter Address" required
+            <textarea className="form-control" aria-label="address" rows="3" placeholder="Enter Address" required
               value={address}
               onChange={(event) => {
                 setAddress(event.target.value);
@@ -99,7 +99,7 @@ function AccountDetailsEdit() {
           </div>
           <div className="mb-3">
             <label htmlFor="nominee" className="form-label">Nominee</label>
-            <input type="text" className="form-control" data-testid="nominee" placeholder="Enter Nominee Name" required
+            <input type="text" className="form-control" aria-label="nominee" placeholder="Enter Nominee Name" required
               value={nominee}
               onChange={(event) => {
                 setNominee(event.target.value);
